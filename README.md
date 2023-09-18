@@ -38,10 +38,15 @@ On OS X, you can install the dependencies using [Homebrew](http://brew.sh):
 
 Or [MacPorts](https://www.macports.org):
 
-    $ sudo port install python311 gawk gsed gmp mpfr libmpc isl zlib expat texinfo flock
+    $ sudo port install python311 gmake gawk gsed gmp mpfr libmpc isl zlib expat texinfo flock
 
-When building in a system using MacPorts before running `./configure` you must set the following environment variables:
+When building in a system using MacPorts you must add a symlink to `gmake` as `gnumake` inside `/opt/local/libexec/gnubin` since MacPorts only adds there the `make` symlink and the `glibc` build process looks for `gnumake` which still points to an outdated system `make`:
 
+    $ sudo ln -s /opt/local/bin/gmake /opt/local/libexec/gnubin/gnumake
+
+And before running `./configure` you must set the following environment variables:
+
+    $ export PATH=/opt/local/libexec/gnubin:$PATH
     $ export CPPFLAGS=-I/opt/local/include 
     $ export LDFLAGS=-L/opt/local/lib
 
