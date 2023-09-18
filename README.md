@@ -32,9 +32,18 @@ On Arch Linux, executing the following command should suffice:
 
 Also available for Arch users on the AUR: [https://aur.archlinux.org/packages/riscv-gnu-toolchain-bin](https://aur.archlinux.org/packages/riscv-gnu-toolchain-bin)
 
-On OS X, you can use [Homebrew](http://brew.sh) to install the dependencies:
+On OS X, you can install the dependencies using [Homebrew](http://brew.sh):
 
     $ brew install python3 gawk gnu-sed gmp mpfr libmpc isl zlib expat texinfo flock
+
+Or [MacPorts](https://www.macports.org):
+
+    $ sudo port install python311 gawk gsed gmp mpfr libmpc isl zlib expat texinfo flock
+
+When building in a system using MacPorts before running `./configure` you must set the following environment variables:
+
+    $ export CPPFLAGS=-I/opt/local/include 
+    $ export LDFLAGS=-L/opt/local/lib
 
 To build the glibc (Linux) on OS X, you will need to build within a case-sensitive file
 system.  The simplest approach is to create and mount a new disk image with
